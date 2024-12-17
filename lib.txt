@@ -1,0 +1,481 @@
+Play audio, video
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="50dp"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="play audio"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="105dp" />
+
+    <Button
+        android:id="@+id/audiostop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stop audio"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="181dp" />
+
+    <Button
+        android:id="@+id/playvideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="playvideo" />
+
+    <Button
+        android:id="@+id/stopvideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="stop video" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="288dp"
+        android:layout_height="262dp"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="267dp" />
+</LinearLayout>
+
+
+package com.example.audio_video
+
+import android.media.MediaPlayer
+import android.net.Uri
+import android.os.Bundle
+import android.widget.Button
+import android.widget.MediaController
+import android.widget.Toast
+import android.widget.VideoView
+import androidx.activity.enableEdgeToEdge
+import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+class MainActivity : AppCompatActivity() {
+    private var mediaPlayer: MediaPlayer?=null
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        val aup =findViewById<Button>(R.id.button)
+        val aus = findViewById<Button>(R.id.audiostop)
+        val vip = findViewById<Button>(R.id.playvideo)
+        val vis = findViewById<Button>(R.id.stopvideo)
+        val vview = findViewById<VideoView>(R.id.videoView)
+        aup.setOnClickListener {
+            Toast.makeText(this, "clicked", Toast.LENGTH_SHORT).show()
+            mediaPlayer=MediaPlayer.create(this,R.raw.audio)
+            mediaPlayer?.start()
+
+        }
+        aus.setOnClickListener {
+            mediaPlayer?.stop()
+            mediaPlayer?.release()
+            mediaPlayer=null
+        }
+        vip.setOnClickListener{
+            val videoUri = Uri.parse("android.resource://" + packageName + "/" + R.raw.video)
+            vview.setVideoURI(videoUri)
+            vview.setMediaController(MediaController(this))
+            vview.requestFocus()
+            vview.start()
+        }
+        vis.setOnClickListener { if (vview.isPlaying) { vview.stopPlayback() } }
+    }
+}
+
+menu arthemetic
+main activity
+package com.example.menuarthemetic
+import android.os.Bundle
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.PopupMenu
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val number1EditText: EditText = findViewById(R.id.number1)
+        val number2EditText: EditText = findViewById(R.id.number2)
+        val resultTextView: TextView = findViewById(R.id.resultText)
+
+        findViewById<ImageButton>(R.id.iButton).setOnClickListener { view ->
+            val popup = PopupMenu(this, view)
+            val inflater = popup.menuInflater
+            inflater.inflate(R.menu.menu, popup.menu)
+            popup.setOnMenuItemClickListener { menuItem: MenuItem ->
+                val num1 = number1EditText.text.toString().toDoubleOrNull()
+                val num2 = number2EditText.text.toString().toDoubleOrNull()
+                if (num1 == null || num2 == null) {
+                    Toast.makeText(this, "Please enter valid numbers",
+                        Toast.LENGTH_SHORT).show()
+                    return@setOnMenuItemClickListener false
+                }
+                when (menuItem.itemId) {
+                    R.id.add -> {
+                        val result = num1 + num2
+                        resultTextView.text = "Result: $result"
+                        true
+                    }
+                    R.id.subtract -> {
+                        val result = num1 - num2
+                        resultTextView.text = "Result: $result"
+                        true
+                    }
+                    R.id.multiply -> {
+                        val result = num1 * num2
+                        resultTextView.text = "Result: $result"
+                        true
+                    }
+                    R.id.divide -> {
+                        if (num2 == 0.0) {
+                            Toast.makeText(this, "Cannot divide by zero",
+                                Toast.LENGTH_SHORT).show()
+                        } else {
+                            val result = num1 / num2
+                            resultTextView.text = "Result: $result"
+                        }
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popup.show()
+        }
+    }
+} 
+
+xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/number1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="275dp"
+        android:hint="Enter number"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/number2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/number2"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Enter number"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/number1" />
+
+    <ImageButton
+        android:id="@+id/iButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Arithmetic operations"
+        android:src="@android:drawable/ic_menu_add"
+        app:layout_constraintEnd_toEndOf="@+id/number2"
+        app:layout_constraintStart_toStartOf="@+id/number2"
+        app:layout_constraintTop_toBottomOf="@+id/number2" />
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="212dp"
+        android:text="Result: "
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/iButton"
+        app:layout_constraintTop_toBottomOf="@+id/iButton" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="621dp"
+        android:text="Arithmetic Operations"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+menu
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/add" android:title="Add" />
+    <item android:id="@+id/subtract" android:title="Subtract" />
+    <item android:id="@+id/multiply" android:title="Multiply" />
+    <item android:id="@+id/divide" android:title="Divide" />
+</menu>
+
+
+store student details
+main_xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/roll_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Roll No" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name" />
+
+    <EditText
+        android:id="@+id/mark1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mark 1" />
+
+    <EditText
+        android:id="@+id/mark2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mark 2" />
+
+    <EditText
+        android:id="@+id/mark3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mark 3" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+    <Button
+        android:id="@+id/display_results_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Display Results" />
+
+</LinearLayout>
+Display_xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
+
+database helper.kt
+package com.example.store_marks
+import android.content.ContentValues
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+
+class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+    companion object {
+        private const val DATABASE_NAME = "StudentDB"
+        private const val DATABASE_VERSION = 1
+        private const val TABLE_STUDENTS = "students"
+        // Columns
+        private const val KEY_ROLL_NO = "roll_no"
+        private const val KEY_NAME = "name"
+        private const val KEY_MARK1 = "mark1"
+        private const val KEY_MARK2 = "mark2"
+        private const val KEY_MARK3 = "mark3"
+        private const val KEY_TOTAL = "total"
+    }
+
+    override fun onCreate(db: SQLiteDatabase) {
+        val createTable = """CREATE TABLE $TABLE_STUDENTS(
+            $KEY_ROLL_NO TEXT PRIMARY KEY,
+            $KEY_NAME TEXT,
+            $KEY_MARK1 INTEGER,
+            $KEY_MARK2 INTEGER,
+            $KEY_MARK3 INTEGER,
+            $KEY_TOTAL INTEGER
+        )"""
+        db.execSQL(createTable)
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_STUDENTS")
+        onCreate(db)
+    }
+
+    fun addStudent(student: Student) {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(KEY_ROLL_NO, student.rollNo)
+            put(KEY_NAME, student.name)
+            put(KEY_MARK1, student.mark1)
+            put(KEY_MARK2, student.mark2)
+            put(KEY_MARK3, student.mark3)
+            put(KEY_TOTAL, student.total)
+        }
+        db.insert(TABLE_STUDENTS, null, values)
+        db.close()
+    }
+
+    fun getAllStudents(): List<Student> {
+        val studentList = mutableListOf<Student>()
+        val selectQuery = "SELECT * FROM $TABLE_STUDENTS"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(selectQuery, null)
+        cursor.use {
+            val rollNoIndex = it.getColumnIndex(KEY_ROLL_NO)
+            val nameIndex = it.getColumnIndex(KEY_NAME)
+            val mark1Index = it.getColumnIndex(KEY_MARK1)
+            val mark2Index = it.getColumnIndex(KEY_MARK2)
+            val mark3Index = it.getColumnIndex(KEY_MARK3)
+            val totalIndex = it.getColumnIndex(KEY_TOTAL)
+            while (it.moveToNext()) {
+                val student = Student(
+                    rollNo = it.getString(rollNoIndex),
+                    name = it.getString(nameIndex),
+                    mark1 = it.getInt(mark1Index),
+                    mark2 = it.getInt(mark2Index),
+                    mark3 = it.getInt(mark3Index),
+                    total = it.getInt(totalIndex)
+                )
+                studentList.add(student)
+            }
+        }
+        db.close()
+        return studentList
+    }
+}
+
+student.kt
+
+data class Student(
+    val rollNo: String,
+    val name: String,
+    val mark1: Int,
+    val mark2: Int,
+    val mark3: Int,
+    val total: Int
+)
+
+display.kt
+package com.example.store_marks
+
+import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
+
+class DisplayResultsActivity : AppCompatActivity() {
+    private lateinit var dbHelper: DatabaseHelper
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.display)
+
+        dbHelper = DatabaseHelper(this)
+        val listView = findViewById<ListView>(R.id.list_view)
+
+        val students = dbHelper.getAllStudents()
+        val studentDetails = students.map { "${it.rollNo}: ${it.name}, Total: ${it.total}" }
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, studentDetails)
+        listView.adapter = adapter
+    }
+}
+main activity.kt
+package com.example.store_marks
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var dbHelper: DatabaseHelper
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        dbHelper = DatabaseHelper(this)
+
+        val rollNoEditText = findViewById<EditText>(R.id.roll_no)
+        val nameEditText = findViewById<EditText>(R.id.name)
+        val mark1EditText = findViewById<EditText>(R.id.mark1)
+        val mark2EditText = findViewById<EditText>(R.id.mark2)
+        val mark3EditText = findViewById<EditText>(R.id.mark3)
+        val saveButton = findViewById<Button>(R.id.save_button)
+        val displayResultsButton = findViewById<Button>(R.id.display_results_button)
+
+        saveButton.setOnClickListener {
+            val rollNo = rollNoEditText.text.toString()
+            val name = nameEditText.text.toString()
+            val mark1 = mark1EditText.text.toString().toIntOrNull() ?: 0
+            val mark2 = mark2EditText.text.toString().toIntOrNull() ?: 0
+            val mark3 = mark3EditText.text.toString().toIntOrNull() ?: 0
+            val total = mark1 + mark2 + mark3
+
+            val student = Student(rollNo, name, mark1, mark2, mark3, total)
+            dbHelper.addStudent(student)
+
+            Toast.makeText(this, "Student details saved", Toast.LENGTH_SHORT).show()
+        }
+
+        displayResultsButton.setOnClickListener {
+            val intent = Intent(this, DisplayResultsActivity::class.java)
+            startActivity(intent)
+        }
+    }
+}
+
+manifest
+<activity android:name=".DisplayResultsActivity" />
+

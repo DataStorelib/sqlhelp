@@ -1,0 +1,2574 @@
+Aim: Program to Design User Login form.
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout     
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="12dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="37dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toEndOf="@id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="84dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="188dp"
+        android:gravity="center"
+        android:text="username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="82dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="34dp"
+        android:gravity="center"
+        android:text="password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="56dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextPassword" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="205dp"
+        android:layout_marginTop="44dp"
+        android:text="TextView"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+Program to Display message in Edit text on button press.
+
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="188dp"
+        android:ems="10"
+        android:hint="Enter text"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="56dp"
+        android:text="Submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextText" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="205dp"
+        android:layout_marginTop="44dp"
+        android:text=""
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MainActivity.kt
+package com.example.myapplication
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var input: EditText
+    private lateinit var submit: Button
+    private lateinit var output: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        input = findViewById(R.id.editTextText)
+        submit = findViewById(R.id.button)
+        output = findViewById(R.id.textView3)
+
+        submit.setOnClickListener {
+            val text = input.text.toString()
+            if (text.isNotEmpty()) {
+                output.visibility = View.VISIBLE
+                output.text = "Hello, $text!"
+            } else {
+                output.visibility = View.VISIBLE
+                output.text = "Please enter some text."
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+Aim: Program to Check the given number in the Edit Text, is prime or not.
+
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="188dp"
+        android:ems="10"
+        android:hint="Enter text"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="56dp"
+        android:text="Submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextText" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="205dp"
+        android:layout_marginTop="44dp"
+        android:text=""
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MainActivity.kt
+package com.example.myapplication
+
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var input: EditText
+    private lateinit var submit: Button
+    private lateinit var output: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        input = findViewById(R.id.editTextText)
+        submit = findViewById(R.id.button)
+        output = findViewById(R.id.textView3)
+
+        submit.setOnClickListener {
+            val numberText = input.text.toString()
+
+            if (numberText.isNotEmpty()) {
+                val number = numberText.toIntOrNull()
+                if (number != null) {
+                    if (isPrime(number)) {
+                        output.text = "$number is a prime number."
+                    } else {
+                        output.text = "$number is not a prime number."
+                    }
+                } else {
+                    output.text = "Please enter a valid number."
+                }
+            } else {
+                output.text = "Input cannot be empty."
+            }
+            output.visibility = View.VISIBLE
+        }
+    }
+
+    private fun isPrime(num: Int): Boolean {
+        if (num <= 1) return false
+        for (i in 2..Math.sqrt(num.toDouble()).toInt()) {
+            if (num % i == 0) return false
+        }
+        return true
+    }
+}
+
+
+
+
+
+
+Aim: Program to demonstrate Toast.
+
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="56dp"
+        android:text="Submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+MainActivity.kt
+package com.example.myapplication
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() { 
+    private lateinit var submit: Button
+
+    
+ override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        submit = findViewById(R.id.button)
+
+        submit.setOnClickListener {
+                Toast.makeText(this, "Button clicked", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
+
+
+
+
+Aim: Program to add two numbers and display the result.
+
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/num1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:hint="Enter first number"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/num2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Enter second number"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/num1" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="24dp"
+        android:text="Add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/num2" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="16dp"
+        android:text="Result:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MainActivity.kt
+package com.example.myapplication
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var num1: EditText
+    private lateinit var num2: EditText
+    private lateinit var button: Button
+    private lateinit var result: TextView
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        num1 = findViewById(R.id.num1)
+        num2 = findViewById(R.id.num2)
+        button = findViewById(R.id.button)
+        result = findViewById(R.id.result)
+
+        button.setOnClickListener {
+            val number1 = num1.text.toString().toDoubleOrNull()
+            val number2 = num2.text.toString().toDoubleOrNull()
+
+            if (number1 != null && number2 != null) {
+                val sum = number1 + number2
+                result.text = "Result: $sum"
+            } else {
+                result.text = "Please enter valid numbers"
+            }
+        }
+    }
+}
+
+
+
+
+
+
+Aim: Program to perform simple calculator using Linear Layout.
+
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/num1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter first number"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/num2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter second number"
+        android:inputType="numberDecimal"
+        android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        
+        <Button
+            android:id="@+id/add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/subtract"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Subtract" />
+
+        <Button
+            android:id="@+id/multiply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Multiply" />
+
+        <Button
+            android:id="@+id/divide"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Divide" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Result:"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
+
+
+
+ MainActivity.kt
+ package com.example.myapplication
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var num1: EditText
+    private lateinit var num2: EditText
+    private lateinit var add: Button
+    private lateinit var subtract: Button
+    private lateinit var multiply: Button
+    private lateinit var divide: Button
+    private lateinit var result: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        num1 = findViewById(R.id.num1)
+        num2 = findViewById(R.id.num2)
+        add = findViewById(R.id.add)
+        subtract = findViewById(R.id.subtract)
+        multiply = findViewById(R.id.multiply)
+        divide = findViewById(R.id.divide)
+        result = findViewById(R.id.result)
+
+        add.setOnClickListener { calculate("+") }
+        subtract.setOnClickListener { calculate("-") }
+        multiply.setOnClickListener { calculate("*") }
+        divide.setOnClickListener { calculate("/") }
+    }
+
+    private fun calculate(operation: String) {
+        val number1 = num1.text.toString().toDoubleOrNull()
+        val number2 = num2.text.toString().toDoubleOrNull()
+
+        if (number1 == null || number2 == null) {
+            Toast.makeText(this, "Please enter valid numbers", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val resultText = when (operation) {
+            "+" -> "Result: ${number1 + number2}"
+            "-" -> "Result: ${number1 - number2}"
+            "*" -> "Result: ${number1 * number2}"
+            "/" -> if (number2 != 0.0) "Result: ${number1 / number2}" else "Cannot divide by zero"
+            else -> "Invalid Operation"
+        }
+
+        result.text = resultText
+    }
+}
+
+
+
+
+Aim: Program to Load an Image in ImageView.
+
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/Tea"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+ MainActivity.kt
+package com.example.myapplication
+import android.os.Bundle
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var imageView: ImageView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        imageView = findViewById(R.id.imageView)
+        imageView.setImageResource(R.drawable.Tea)
+    }
+}
+
+
+
+
+
+
+
+Aim: Program to move an Image from one ImageView to another ImageView on button press.
+
+
+Procedure:
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/johnwick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/moveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Move Image"
+        app:layout_constraintTop_toBottomOf="@id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MainActivity.kt
+package com.example.myapplication
+import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var imageView1: ImageView
+    private lateinit var imageView2: ImageView
+    private lateinit var moveButton: Button
+    private var k = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+       super.onCreate(savedInstanceState)
+       setContentView(R.layout.activity_main)
+
+        imageView1 = findViewById(R.id.imageView1)
+        imageView2 = findViewById(R.id.imageView2)
+        moveButton = findViewById(R.id.moveButton)
+
+        moveButton.setOnClickListener {
+            if (k == 0) {
+                imageView2.setImageDrawable(imageView1.drawable)
+                imageView1.setImageDrawable(null)
+                k = 1
+            } else {
+                imageView1.setImageDrawable(imageView2.drawable)
+                imageView2.setImageDrawable(null)
+                k = 0
+            }
+        }
+    }
+
+Aim: Create a simple list view to list our former presidents.
+
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ListView
+        android:id="@+id/presidentListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+ MainActivity.kt
+package com.example.myapplication
+import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var presidentListView: ListView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        presidentListView = findViewById(R.id.presidentListView)
+
+             val presidents = listOf(
+            "Dr. Rajendra Prasad", "Dr. Sarvepalli Radhakrishnan", "Dr. Zakir Husain",
+            "V. V. Giri", "Fakhruddin Ali Ahmed", "Neelam Sanjiva Reddy",
+            "Giani Zail Singh", "R. Venkataraman", Dr. Shankar Dayal Sharma",
+            "K. R. Narayanan", "Dr. A. P. J. Abdul Kalam", "Pratibha Patil",
+            "Pranab Mukherjee", "Ram Nath Kovind")
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, presidents)
+        presidentListView.adapter = adapter
+    }
+}
+
+
+
+
+
+
+Aim: Develop an application that draws basic graphical primitives on the screen.
+
+
+Procedure:
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/ovalTextView"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:text="Oval"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:background="@drawable/oval_shape"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+oval_shape.xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FF0000"/> 
+    <corners android:radius="100dp"/> 
+</shape>
+
+
+
+
+
+
+
+
+
+
+
+Aim: Create a Custom List view that contains list of students with their name, place and photo.
+
+
+Procedure:
+custom_list.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+     <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>
+MainActivity.kt
+package com.example.myapplication
+import android.os.Bundle
+import android.widget.ListView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    private val names = arrayOf("Tom", "Tobey", "Andrew")
+    private val places = arrayOf("USA", "Canada", "UK")
+    private val imageId = arrayOf(.drawable.tom, R.drawable.tobey, 
+    R.drawable.andrew)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val listView = findViewById<ListView>(R.id.listView)
+        val myListAdapter = MyListAdapter(this, names, places, imageId)
+        listView.adapter = myListAdapter
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val selectedName = names[position]
+            val selectedPlace = places[position]
+            Toast.makeText(
+                this, "Clicked on $selectedName from $selectedPlace at position 
+                $position", Toast.LENGTH_LONG).show()
+        }
+    }
+}
+
+
+
+MyListAdapter.kt
+package com.example.myapplication
+import android.app.Activity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.TextView
+
+class MyListAdapter(
+    private val context: Activity,
+    private val title: Array<String>,
+    private val description: Array<String>,
+    private val imgid: Array<Int>) : 
+    ArrayAdapter<String>(context, R.layout.custom_list, title) {
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup):View{            
+        val inflater = context.layoutInflater
+        val rowView = convertView ?: inflater.inflate(R.layout.custom_list, parent, false)
+        val titleText = rowView.findViewById<TextView>(R.id.title)
+        val imageView = rowView.findViewById<ImageView>(R.id.icon)
+        val subtitleText = rowView.findViewById<TextView>(R.id.description)
+        titleText.text = title[position]
+        imageView.setImageResource(imgid[position])
+        subtitleText.text = description[position]
+        return rowView
+    }
+}
+
+
+
+
+
+
+
+
+Aim: Create an application to make calls to your friends contact number.
+
+
+Procedure:
+AndroidManifest.xml
+<uses-feature android:name="android.hardware.telephony" android:required="false" />
+<uses-permission android:name="android.permission.CALL_PHONE" />
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/phoneNumberEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter phone number"
+        android:inputType="phone"
+        android:maxLength="15"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/callButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call Friend"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>
+
+MainActivity.kt
+package com.example.myapplication
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Bundle
+import android.view.View
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+
+class MainActivity : AppCompatActivity() {
+
+    private val CALL_PHONE_PERMISSION = 1
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val callButton = findViewById<View>(R.id.callButton)
+        callButton.setOnClickListener {
+            val phoneNumberEditText = findViewById<EditText>(R.id.phoneNumberEditText)
+            val phoneNumber = phoneNumberEditText.text.toString()
+
+            if (phoneNumber.isNotEmpty()) {
+                checkPermissionAndCall(phoneNumber)
+            } else {
+                Toast.makeText(this, "Please enter a valid phone number", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    private fun checkPermissionAndCall(phoneNumber: String) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            makePhoneCall(phoneNumber)
+        } else {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.CALL_PHONE), CALL_PHONE_PERMISSION
+            )
+        }
+    }
+    private fun makePhoneCall(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_CALL)
+        intent.data = Uri.parse("tel:$phoneNumber")
+        try {
+            startActivity(intent)
+        } catch (e: SecurityException) {
+            Toast.makeText(this, "Permission denied: Unable to make the call", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
+
+Aim: Create the Application to play the Audio and Video clips.
+
+
+Procedure:
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/playAudioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Audio" />
+
+    <Button
+        android:id="@+id/stopAudioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Audio"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:id="@+id/playVideoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Video"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/stopVideoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Video"
+        android:layout_marginTop="10dp" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:visibility="gone"
+        android:layout_marginTop="20dp" />
+</LinearLayout>
+
+MainActivity.kt
+package com.example.myapplication
+import android.media.MediaPlayer
+import android.net.Uri
+import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
+import android.widget.VideoView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var playAudioButton: Button
+    private lateinit var stopAudioButton: Button
+    private lateinit var playVideoButton: Button
+    private lateinit var stopVideoButton: Button
+    private lateinit var videoView: VideoView
+    private var mediaPlayer: MediaPlayer? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        playAudioButton = findViewById(R.id.playAudioButton)
+        stopAudioButton = findViewById(R.id.stopAudioButton)
+        playVideoButton = findViewById(R.id.playVideoButton)
+        stopVideoButton = findViewById(R.id.stopVideoButton)
+        videoView = findViewById(R.id.videoView)
+
+        playAudioButton.setOnClickListener {
+            playAudio()
+        }
+
+        stopAudioButton.setOnClickListener {
+            stopAudio()
+        }
+
+        playVideoButton.setOnClickListener {
+            playVideo()
+        }
+
+        stopVideoButton.setOnClickListener {
+            stopVideo()
+        }
+    }
+
+    private fun playAudio() {
+        val audioUri = Uri.parse("android.resource://${packageName}/raw/supra")
+        mediaPlayer = MediaPlayer.create(this, audioUri)
+        mediaPlayer?.start()
+        Toast.makeText(this, "Audio is playing", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun stopAudio() {
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
+        Toast.makeText(this, "Audio stopped", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun playVideo() {
+        val videoUri = Uri.parse("android.resource://${packageName}/raw/nissan")
+        videoView.setVideoURI(videoUri)
+        videoView.visibility = VideoView.VISIBLE
+        videoView.start()
+        Toast.makeText(this, "Video is playing", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun stopVideo() {
+        videoView.stopPlayback()
+        videoView.visibility = VideoView.GONE
+        Toast.makeText(this, "Video stopped", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer?.release()
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+Aim: Create Application by Using Building Menus and Storing Data.
+
+
+Procedure:
+menu_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+android:id="@+id/action_add" android:title="Add Name" />
+<item
+android:id="@+id/action_view" android:title="View Names" />
+</menu>
+
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent"
+android:orientation="vertical" android:padding="16dp">
+<androidx.appcompat.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="wrap_content" />
+<TextView android:id="@+id/tvData"
+android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Names will appear here" android:textSize="16sp" android:padding="10dp" />
+</LinearLayout>
+
+DatabaseHelper.kt
+package com.example.application16 import android.content.ContentValues import android.content.Context
+import android.database.sqlite.SQLiteDatabase import android.database.sqlite.SQLiteOpenHelper
+
+class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+companion object {
+const val DATABASE_NAME = "NamesDatabase" const val DATABASE_VERSION = 1
+const val TABLE_NAME = "Names" const val COLUMN_ID = "id"
+const val COLUMN_NAME = "name"
+}
+override fun onCreate(db: SQLiteDatabase?) {
+    val createTableQuery = "CREATE TABLE $TABLE_NAME ($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+$COLUMN_NAME TEXT)"
+db?.execSQL(createTableQuery)
+}
+
+
+  override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+db?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+onCreate(db)
+}
+
+fun addName(name: String): Long { if (name.isBlank()) {
+throw IllegalArgumentException("Name cannot be empty or blank")
+}
+
+
+val db = writableDatabase
+val values = ContentValues().apply { put(COLUMN_NAME, name)
+}
+
+
+return db.insert(TABLE_NAME, null, values)
+}
+fun getAllNames(): List<String> {
+val names = mutableListOf<String>() val db = readableDatabase
+val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME", null)
+
+
+if (cursor.moveToFirst()) { do {
+        val name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME))
+names.add(name)
+} while (cursor.moveToNext())
+}
+cursor.close() return names
+}
+}
+
+MainActivity.kt
+package com.example.application16 import android.os.Bundle
+import android.util.Log import android.view.Menu
+import android.view.MenuItem import android.widget.EditText import android.widget.TextView import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity import androidx.appcompat.widget.Toolbar
+import com.example.application16.DatabaseHelper
+
+
+class MainActivity : AppCompatActivity() {
+
+
+private lateinit var databaseHelper: DatabaseHelper private lateinit var tvData: TextView
+
+override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState) setContentView(R.layout.activity_main)
+
+val toolbar: Toolbar = findViewById(R.id.toolbar) setSupportActionBar(toolbar) supportActionBar?.title = "Database App"
+tvData = findViewById(R.id.tvData) databaseHelper = DatabaseHelper(this)
+
+}
+
+
+override fun onCreateOptionsMenu(menu: Menu?): Boolean { menuInflater.inflate(R.menu.menu_main, menu)
+return true
+}
+
+
+override fun onOptionsItemSelected(item: MenuItem): Boolean { when (item.itemId) {
+R.id.action_add -> { showAddNameDialog() return true
+}
+R.id.action_view -> { showNames() return true
+}
+}
+return super.onOptionsItemSelected(item)
+}
+
+
+private fun showAddNameDialog() {
+val builder = AlertDialog.Builder(this) builder.setTitle("Add Name")
+
+val input = EditText(this) input.hint = "Enter name" builder.setView(input)
+
+
+
+builder.setPositiveButton("Add") { _, _ -> val name = input.text.toString()
+
+try {
+if (name.isNotEmpty()) {
+val result = databaseHelper.addName(name) if (result > 0) {
+            Toast.makeText(this, "Name added successfully!", Toast.LENGTH_SHORT).show()
+} else {
+            Toast.makeText(this, "Failed to add name.", Toast.LENGTH_SHORT).show()
+}
+} else {
+          Toast.makeText(this, "Name cannot be empty!", Toast.LENGTH_SHORT).show()
+}
+} catch (e: Exception) {
+Log.e("MainActivity", "Error adding name: ${e.message}") Toast.makeText(this, "An error occurred: ${e.message}",
+Toast.LENGTH_SHORT).show()
+}
+}
+
+
+builder.setNegativeButton("Cancel", null) builder.show()
+}
+
+private fun showNames() {
+val names = databaseHelper.getAllNames() if (names.isEmpty()) {
+tvData.text = "No names found!"
+} else {
+tvData.text = names.joinToString("\n")
+}
+}
+}
+
+Aim: Design the Application for Menus and Action Bar.
+
+
+Procedure:
+menu_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+android:id="@+id/action_search" android:title="Search" android:showAsAction="ifRoom"/>
+<item
+android:id="@+id/action_settings" android:title="Settings" android:showAsAction="ifRoom"/>
+<item
+android:id="@+id/action_help" android:title="Help" android:showAsAction="never"/>
+</menu>
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout  
+  xmlns:android="http://schemas.android.com/apk/res/android
+android:layout_width="match_parent" android:layout_height="match_parent">
+
+<androidx.appcompat.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" android:background="?attr/colorPrimary" android:title="My App" android:titleTextColor="@android:color/white" android:elevation="4dp"/>
+<androidx.fragment.app.FragmentContainerView android:id="@+id/fragment_container" android:layout_width="match_parent" android:layout_height="match_parent"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+MainActivity.kt
+package com.example.myapplication 
+import android.os.Bundle
+import android.view.Menu 
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity import androidx.appcompat.widget.Toolbar
+import com.google.android.material.snackbar.Snackbar
+class MainActivity : AppCompatActivity() {
+override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState) setContentView(R.layout.activity_main)
+    val toolbar: Toolbar = findViewById(R.id.toolbar) setSupportActionBar(toolbar)
+}
+ override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+menuInflater.inflate(R.menu.menu_main, menu) return true
+}
+override fun onOptionsItemSelected(item: MenuItem): Boolean { return when (item.itemId) {
+R.id.action_search -> {
+showMessage("Search selected") true
+}
+R.id.action_settings -> {
+showMessage("Settings selected") true
+}
+R.id.action_help -> {
+ showMessage("Help selected") true
+}
+else -> super.onOptionsItemSelected(item)
+}
+}
+private fun showMessage(message: String) { Snackbar.make(findViewById(android.R.id.content), message,
+Snackbar.LENGTH_SHORT).show()
+}
+}
+
+
+
+
+Aim: Program to Select an item from the list and display in Label.
+
+
+Procedure:
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout    
+  xmlns:android="http://schemas.android.com/apk/res/android"  
+  xmlns:app="http://schemas.android.com/apk/res-auto"  
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/main" android:layout_width="match_parent"   
+  android:layout_height="match_parent" 
+  tools:context=".MainActivity">
+
+    <TextView 
+        android:id="@+id/heading"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:text="Cars List" 
+        android:textSize="24sp" 
+        android:textStyle="bold"
+        android:padding="16dp" 
+        app:layout_constraintStart_toStartOf="parent"           
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView 
+        android:id="@+id/selectedItem"
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"
+        android:text="Selected Car: None" 
+        android:textSize="18sp" 
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/heading"   
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ListView 
+       android:layout_width="0dp" 
+       android:layout_height="0dp" 
+       android:id="@+id/listV"
+       app:layout_constraintTop_toBottomOf="@id/selectedItem"   
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintStart_toStartOf="parent" 
+       app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MainActivity.kt
+package com.example.myapplication
+import android.os.Bundle
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val lstview = findViewById<ListView>(R.id.listV)
+        val selectedLabel = findViewById<TextView>(R.id.selectedItem)
+        val items = listOf("Apple", "Banana", "Orange", "Mango", "Grapes", "Pineapple")
+        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(this, 
+        android.R.layout.simple_list_item_1, name)
+        lstview.adapter = arrayAdapter
+        lstview.onItemClickListener = AdapterView.OnItemClickListener { adapterView,   
+         view, position, id ->selectedLabel.text = "Selected Car: ${name[position]}"
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+Date: 16-10-2024
+Experiment No. 17
+Aim: Program to perform all arithmetic operations with Menu.
+
+CO4: Design and build a functional Android application
+
+Procedure:
+menu.xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/add" android:title="Add" />
+    <item android:id="@+id/subtract" android:title="Subtract" />
+    <item android:id="@+id/multiply" android:title="Multiply" />
+    <item android:id="@+id/divide" android:title="Divide" />
+</menu>
+
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+   
+ <EditText
+        android:id="@+id/number1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="275dp"
+        android:hint="Enter number"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/number2"
+        app:layout_constraintTop_toTopOf="parent" />
+   
+ <EditText
+        android:id="@+id/number2"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Enter number"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/number1" />
+   
+ <ImageButton
+        android:id="@+id/iButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Arithmetic operations"
+        android:src="@android:drawable/ic_menu_add"
+        app:layout_constraintEnd_toEndOf="@+id/number2"
+        app:layout_constraintStart_toStartOf="@+id/number2"
+        app:layout_constraintTop_toBottomOf="@+id/number2" />
+   
+ <TextView
+        android:id="@+id/resultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="212dp"
+        android:text="Result: "
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/iButton"
+        app:layout_constraintTop_toBottomOf="@+id/iButton" />
+   
+ <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="621dp"
+        android:text="Arithmetic Operations"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+MainActivity.kt
+package com.example.myapplication
+import android.os.Bundle
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.PopupMenu
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val number1EditText: EditText = findViewById(R.id.number1)
+        val number2EditText: EditText = findViewById(R.id.number2)
+        val resultTextView: TextView = findViewById(R.id.resultText)
+
+        findViewById<ImageButton>(R.id.iButton).setOnClickListener { view ->
+            val popup = PopupMenu(this, view)
+            val inflater = popup.menuInflater
+            inflater.inflate(R.menu.menu, popup.menu)
+            popup.setOnMenuItemClickListener { menuItem: MenuItem ->
+                val num1 = number1EditText.text.toString().toDoubleOrNull()
+                val num2 = number2EditText.text.toString().toDoubleOrNull()
+	     if (num1 == null || num2 == null) {
+                    Toast.makeText(this, "Please enter valid numbers",   
+                    Toast.LENGTH_SHORT).show()
+                    return@setOnMenuItemClickListener false
+                }
+                when (menuItem.itemId) {
+                    R.id.add -> {
+                        val result = num1 + num2
+                        resultTextView.text = "Result: $result"
+                        true
+                    }
+                    R.id.subtract -> {
+                        val result = num1 - num2
+                        resultTextView.text = "Result: $result"
+                        true
+                    }
+                    R.id.multiply -> {
+                        val result = num1 * num2
+                        resultTextView.text = "Result: $result"
+                        true
+                    }
+                    R.id.divide -> {
+                        if (num2 == 0.0) {
+                            Toast.makeText(this, "Cannot divide by zero",   
+                            Toast.LENGTH_SHORT).show()
+                        } else {
+                            val result = num1 / num2
+                            resultTextView.text = "Result: $result"
+                        }
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popup.show()
+        }
+    }
+}
+
+
+Aim: Program to Demonstrate Implicit and Explicit Intent.
+
+
+Procedure:
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/btnOpenSecondActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Second Activity"
+        android:layout_centerInParent="true" />
+</RelativeLayout>
+
+MainActivity.kt
+package com.example.myapplication
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+ val btnOpenSecondActivity = findViewById<Button>(R.id.btnOpenSecondActivity)
+         btnOpenSecondActivity.setOnClickListener {
+            val intent = Intent(this, MainActivity2::class.java)
+            intent.putExtra("EXTRA_MESSAGE", "Hello from MainActivity")
+            startActivity(intent)
+        }
+    }
+}
+
+ activity_main2.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Default Message"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/btnOpenWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Web Page" />
+</LinearLayout>
+
+MainActivity2.kt
+package com.example.myapplication
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity2 : AppCompatActivity() {
+      override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main2)
+        val tvMessage = findViewById<TextView>(R.id.tvMessage)
+        val btnOpenWeb = findViewById<Button>(R.id.btnOpenWeb)
+
+        val message = intent.getStringExtra("EXTRA_MESSAGE")
+        tvMessage.text = message ?: "No message received"
+
+        btnOpenWeb.setOnClickListener {
+            val webpage: Uri = Uri.parse("https://www.google.com")
+            val webIntent = Intent(Intent.ACTION_VIEW, webpage).apply {
+                addCategory(Intent.CATEGORY_BROWSABLE)
+                addCategory(Intent.CATEGORY_DEFAULT)
+            }
+            try {
+                startActivity(webIntent)
+            } catch (e: Exception) {
+                Toast.makeText(this, "No application available to open the webpage", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+Aim: Create Student Details App to read roll no, name and 3 marks, calculate total and store in DB.
+
+CO5: Implement SQLite Database and content providers.
+
+Procedure:
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent">
+
+<androidx.appcompat.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" android:elevation="4dp" />
+
+<LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp" android:layout_marginTop="?attr/actionBarSize">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent"
+android:orientation="vertical">
+</LinearLayout>
+</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+MainActivity.kt
+package com.example.application22 import android.content.Intent import android.os.Bundle
+import android.view.Menu import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity import androidx.appcompat.widget.Toolbar
+
+class MainActivity : AppCompatActivity() {
+override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState) setContentView(R.layout.activity_main)
+
+// Set up the Toolbar
+val toolbar: Toolbar = findViewById(R.id.toolbar) setSupportActionBar(toolbar) supportActionBar?.title = "Student Details App"
+}
+
+
+override fun onCreateOptionsMenu(menu: Menu?): Boolean { menuInflater.inflate(R.menu.menu_main, menu)
+return true
+}
+
+
+override fun onOptionsItemSelected(item: MenuItem): Boolean { when (item.itemId) {
+R.id.action_add_student -> {
+
+startActivity(Intent(this, AddStudentActivity::class.java)) return true
+}
+R.id.action_view_students -> {
+startActivity(Intent(this, ViewStudentsActivity::class.java)) return true
+}
+}
+return super.onOptionsItemSelected(item)
+}
+}
+
+
+activity_add_student.xml
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="match_parent">
+
+<androidx.appcompat.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" android:background="?attr/colorPrimary"
+android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" android:elevation="4dp" />
+
+<LinearLayout android:layout_width="match_parent"
+
+android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp" android:layout_marginTop="?attr/actionBarSize">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp">
+
+<EditText android:id="@+id/etRollNo" android:hint="Roll Number" android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+<EditText android:id="@+id/etName" android:hint="Name" android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+<EditText android:id="@+id/etMark1" android:hint="Mark 1" android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+<EditText android:id="@+id/etMark2" android:hint="Mark 2"
+
+android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+<EditText android:id="@+id/etMark3" android:hint="Mark 3" android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+<Button android:id="@+id/btnSave" android:text="Save" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+</LinearLayout>
+
+
+
+</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+activity_view_students.xml
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="match_parent">
+<androidx.appcompat.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" android:background="?attr/colorPrimary"
+
+android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" android:elevation="4dp" />
+<LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp" android:layout_marginTop="?attr/actionBarSize">
+<ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+<TextView android:id="@+id/tvStudents" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="16dp" android:textSize="16sp" />
+</ScrollView>
+</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+menu_main.xml
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/action_add_student" android:title="Add Student" android:showAsAction="never" />
+<item android:id="@+id/action_view_students" android:title="View Students"
+
+android:showAsAction="never" />
+</menu>
+
+
+AddStudentActivity.kt
+package com.example.application22 import android.os.Bundle
+import android.widget.Button import android.widget.EditText import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity import androidx.appcompat.widget.Toolbar
+class AddStudentActivity : AppCompatActivity() { private lateinit var databaseHelper: DatabaseHelper
+
+override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState) setContentView(R.layout.activity_add_student)
+
+// Set up the Toolbar
+val toolbar: Toolbar = findViewById(R.id.toolbar) setSupportActionBar(toolbar) supportActionBar?.title = "Add Student"
+supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+databaseHelper = DatabaseHelper(this)
+
+
+val etRollNo: EditText = findViewById(R.id.etRollNo) val etName: EditText = findViewById(R.id.etName)
+
+val etMark1: EditText = findViewById(R.id.etMark1) val etMark2: EditText = findViewById(R.id.etMark2) val etMark3: EditText = findViewById(R.id.etMark3) val btnSave: Button = findViewById(R.id.btnSave)
+
+btnSave.setOnClickListener {
+val rollNo = etRollNo.text.toString().toIntOrNull() val name = etName.text.toString()
+val mark1 = etMark1.text.toString().toIntOrNull() val mark2 = etMark2.text.toString().toIntOrNull() val mark3 = etMark3.text.toString().toIntOrNull()
+
+if (rollNo != null && name.isNotEmpty() && mark1 != null && mark2
+!= null && mark3 != null) {
+val result = databaseHelper.addStudent(rollNo, name, mark1, mark2,
+
+mark3)
+
+
+if (result > 0) {
+Toast.makeText(this, "Student added successfully!",
+
+Toast.LENGTH_SHORT).show()
+finish()
+} else {
+          Toast.makeText(this, "Error adding student.", Toast.LENGTH_SHORT).show()
+}
+} else {
+        Toast.makeText(this, "Please fill all fields correctly.", Toast.LENGTH_SHORT).show()
+}
+}
+}
+
+
+
+override fun onSupportNavigateUp(): Boolean { onBackPressed()
+return true
+}
+}
+
+
+ViewStudentsActivity.kt
+package com.example.application22 import android.os.Bundle
+import android.widget.TextView import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity import androidx.appcompat.widget.Toolbar
+class ViewStudentsActivity : AppCompatActivity() { private lateinit var databaseHelper: DatabaseHelper override fun onCreate(savedInstanceState: Bundle?) {
+super.onCreate(savedInstanceState) setContentView(R.layout.activity_view_students)
+
+// Set up the Toolbar
+val toolbar: Toolbar = findViewById(R.id.toolbar) setSupportActionBar(toolbar) supportActionBar?.title = "View Students"
+supportActionBar?.setDisplayHomeAsUpEnabled(true) databaseHelper = DatabaseHelper(this)
+val tvStudents: TextView = findViewById(R.id.tvStudents)
+
+try {
+val students = databaseHelper.getAllStudents() if (students.isEmpty()) {
+tvStudents.text = "No students found."
+} else {
+val studentDetails = students.joinToString("\n") { student ->
+"Roll No: ${student["roll_no"]}, Name: ${student["name"]}, Total:
+${student["total"]}"
+}
+tvStudents.text = studentDetails
+}
+} catch (e: Exception) {
+      Toast.makeText(this, "Error retrieving students: ${e.message}", Toast.LENGTH_SHORT).show()
+tvStudents.text = "Error loading student data."
+}
+}
+override fun onSupportNavigateUp(): Boolean { onBackPressed()
+return true
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Aim: Create a login form with username and password and check successful login.
+
+
+Procedure:
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>
+
+MainActivity.kt
+package com.example.myapplication
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val etUsername = findViewById<EditText>(R.id.etUsername)
+        val etPassword = findViewById<EditText>(R.id.etPassword)
+        val btnLogin = findViewById<Button>(R.id.btnLogin)
+        val tvStatus = findViewById<TextView>(R.id.tvStatus)
+
+        btnLogin.setOnClickListener {
+            val username = etUsername.text.toString()
+            val password = etPassword.text.toString()
+            val correctUsername = "admin"
+            val correctPassword = "password123"
+
+            if (username == correctUsername && password == correctPassword) {
+                tvStatus.text = "Login Successful!"
+                tvStatus.setTextColor(resources.getColor(android.R.color.holo_green_dark))
+            } else {
+                tvStatus.text = "Invalid username or password"
+                tvStatus.setTextColor(resources.getColor(android.R.color.holo_red_dark))
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+Procedure:
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent"
+android:padding="16dp">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+<EditText android:id="@+id/editTextEID" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Enter Employee ID" android:inputType="text"/>
+
+<EditText android:id="@+id/editTextEName" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Enter Employee Name" android:inputType="text"/>
+
+<EditText android:id="@+id/editTextBasicPay" android:layout_width="match_parent" android:layout_height="wrap_content"
+
+android:hint="Enter Basic Pay" android:inputType="numberDecimal"/>
+
+<Button android:id="@+id/buttonCalculate" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Calculate Salary"/>
+
+<TextView android:id="@+id/textViewResults" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:textSize="16sp"/>
+
+<Button android:id="@+id/buttonSave"
+android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Save to Database"/>
+
+<Button android:id="@+id/buttonViewAll" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="View All Employees"/>
+
+</LinearLayout>
+</ScrollView>
+
+
+MainActivity.kt
+package com.example.application24 import android.os.Bundle
+import android.widget.Button import android.widget.EditText import android.widget.TextView import android.widget.Toast
+
+import androidx.appcompat.app.AppCompatActivity
+
+
+class MainActivity : AppCompatActivity() { private lateinit var editTextEID: EditText private lateinit var editTextEName: EditText private lateinit var editTextBasicPay: EditText private lateinit var buttonCalculate: Button private lateinit var textViewResults: TextView private lateinit var buttonSave: Button
+private lateinit var buttonViewAll: Button
+
+
+private lateinit var databaseHelper: DatabaseHelper
+
+
+override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState) setContentView(R.layout.activity_main)
+
+// Initialize views
+editTextEID = findViewById(R.id.editTextEID) editTextEName = findViewById(R.id.editTextEName) editTextBasicPay = findViewById(R.id.editTextBasicPay) buttonCalculate = findViewById(R.id.buttonCalculate) textViewResults = findViewById(R.id.textViewResults) buttonSave = findViewById(R.id.buttonSave) buttonViewAll = findViewById(R.id.buttonViewAll)
+
+// Initialize database helper databaseHelper = DatabaseHelper(this)
+
+
+
+// Calculate button click listener buttonCalculate.setOnClickListener {
+calculateSalary()
+}
+
+
+// Save button click listener buttonSave.setOnClickListener {
+saveSalaryToDatabase()
+}
+
+
+// View All button click listener buttonViewAll.setOnClickListener {
+viewAllEmployees()
+}
+}
+
+
+private fun calculateSalary() {
+val eid = editTextEID.text.toString()
+val ename = editTextEName.text.toString()
+val basicPay = editTextBasicPay.text.toString().toDoubleOrNull()
+
+if (eid.isEmpty() || ename.isEmpty() || basicPay == null) { Toast.makeText(this, "Please enter all details",
+Toast.LENGTH_SHORT).show() return
+}
+
+// Salary Calculations
+val hra = basicPay * 0.5 // 50% of Basic Pay val da = basicPay * 0.2 // 20% of Basic Pay val ta = 100.0	// Fixed TA
+val pf = basicPay * 0.02 // 2% of Basic Pay val netSalary = basicPay + hra + da + ta - pf
+
+// Display Results val resultText = """
+Employee ID: $eid Employee Name: $ename Basic Pay: $basicPay HRA (50%): $hra
+DA (20%): $da
+TA: $ta
+PF (2%): $pf
+  Net Salary: $netSalary """.trimIndent()
+
+textViewResults.text = resultText
+}
+private fun saveSalaryToDatabase() { val eid = editTextEID.text.toString()
+val ename = editTextEName.text.toString()
+val basicPay = editTextBasicPay.text.toString().toDoubleOrNull() if (eid.isEmpty() || ename.isEmpty() || basicPay == null) {
+      Toast.makeText(this, "Please calculate salary first", Toast.LENGTH_SHORT).show()
+
+return
+}
+// Recalculate for database val hra = basicPay * 0.5 val da = basicPay * 0.2 val ta = 100.0
+val pf = basicPay * 0.02
+val netSalary = basicPay + hra + da + ta - pf val employee = Employee(
+eid = eid, ename = ename,
+basicPay = basicPay, hra = hra,
+da = da, ta = ta, pf = pf,
+netSalary = netSalary
+)
+databaseHelper.addEmployee(employee) Toast.makeText(this, "Employee salary saved to database",
+Toast.LENGTH_SHORT).show()
+}
+
+
+private fun viewAllEmployees() {
+val employees = databaseHelper.getAllEmployees() if (employees.isEmpty()) {
+textViewResults.text = "No employees found in database" return
+
+}
+val resultText = StringBuilder() resultText.append("All Employees:\n\n") employees.forEach { emp ->
+resultText.append(""" Employee ID: ${emp.eid} Name: ${emp.ename}
+Basic Pay: ${emp.basicPay} Net Salary: ${emp.netSalary}
+
+""".trimIndent())
+}
+textViewResults.text = resultText.toString()
+}
+}
+
+
+Employee.kt
+package com.example.application24 data class Employee(
+val eid: String, val ename: String,
+val basicPay: Double, val hra: Double,
+val da: Double, val ta: Double, val pf: Double,
+val netSalary: Double
+)
+
+DatabaseHelper.kt
+package com.example.application24 import android.content.ContentValues import android.content.Context
+import android.database.sqlite.SQLiteDatabase import android.database.sqlite.SQLiteOpenHelper
+
+class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+companion object {
+private const val DATABASE_NAME = "EmployeeSalaryDB" private const val DATABASE_VERSION = 1
+private const val TABLE_EMPLOYEES = "employees"
+
+
+// Columns
+private const val KEY_EID = "eid"
+private const val KEY_ENAME = "ename"
+private const val KEY_BASIC_PAY = "basic_pay" private const val KEY_HRA = "hra"
+private const val KEY_DA = "da" private const val KEY_TA = "ta" private const val KEY_PF = "pf"
+private const val KEY_NET_SALARY = "net_salary"
+}
+
+
+override fun onCreate(db: SQLiteDatabase) {
+val createTable = """CREATE TABLE $TABLE_EMPLOYEES(
+$KEY_EID TEXT PRIMARY KEY,
+
+$KEY_ENAME TEXT,
+$KEY_BASIC_PAY REAL,
+$KEY_HRA REAL,
+$KEY_DA REAL,
+$KEY_TA REAL,
+$KEY_PF REAL,
+$KEY_NET_SALARY REAL
+)"""
+db.execSQL(createTable)
+}
+
+
+  override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+db.execSQL("DROP TABLE IF EXISTS $TABLE_EMPLOYEES")
+onCreate(db)
+}
+
+
+fun addEmployee(employee: Employee) { val db = this.writableDatabase
+val values = ContentValues().apply { put(KEY_EID, employee.eid) put(KEY_ENAME, employee.ename) put(KEY_BASIC_PAY, employee.basicPay) put(KEY_HRA, employee.hra) put(KEY_DA, employee.da)
+put(KEY_TA, employee.ta) put(KEY_PF, employee.pf)
+put(KEY_NET_SALARY, employee.netSalary)
+
+}
+db.insert(TABLE_EMPLOYEES, null, values) db.close()
+}
+
+
+fun getAllEmployees(): List<Employee> {
+val employeeList = mutableListOf<Employee>()
+val selectQuery = "SELECT * FROM $TABLE_EMPLOYEES"
+
+
+val db = this.readableDatabase
+val cursor = db.rawQuery(selectQuery, null)
+
+
+cursor.use {
+val eidIndex = it.getColumnIndex(KEY_EID)
+val enameIndex = it.getColumnIndex(KEY_ENAME)
+val basicPayIndex = it.getColumnIndex(KEY_BASIC_PAY) val hraIndex = it.getColumnIndex(KEY_HRA)
+val daIndex = it.getColumnIndex(KEY_DA) val taIndex = it.getColumnIndex(KEY_TA) val pfIndex = it.getColumnIndex(KEY_PF)
+val netSalaryIndex = it.getColumnIndex(KEY_NET_SALARY)
+
+
+while (it.moveToNext()) { val employee = Employee(
+eid = it.getString(eidIndex), ename = it.getString(enameIndex),
+basicPay = it.getDouble(basicPayIndex), hra = it.getDouble(hraIndex),
+
+da = it.getDouble(daIndex), ta = it.getDouble(taIndex), pf = it.getDouble(pfIndex),
+netSalary = it.getDouble(netSalaryIndex)
+)
+employeeList.add(employee)
+}
+}
+db.close()
+return employeeList
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+Aim: Create a menu (Store, Display) to store and retrieve data of students marks from the DB.
+
+CO5: Implement SQLite Database and content providers.
+
+Procedure:
+activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent"
+android:orientation="vertical">
+
+
+<androidx.appcompat.widget.Toolbar android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+/>
+
+
+<LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center" android:padding="16dp">
+
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Student Marks Management" android:textSize="24sp" android:textStyle="bold" android:layout_marginBottom="32dp"/>
+
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+      android:text="Use the menu to:\n\n- Store Student Marks\n- Display Student Marks"
+android:textSize="18sp" android:gravity="center"/>
+
+</LinearLayout>
+</LinearLayout>
+
+
+activity_store_marks.xml
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent"
+android:padding="16dp">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+<EditText
+
+android:id="@+id/editTextRollNumber" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Enter Roll Number" android:inputType="text"/>
+
+<EditText android:id="@+id/editTextName" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Enter Student Name" android:inputType="text"/>
+
+<EditText android:id="@+id/editTextSubject1" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Subject 1 Marks" android:inputType="number"/>
+<EditText android:id="@+id/editTextSubject2" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Subject 2 Marks" android:inputType="number"/>
+
+<EditText android:id="@+id/editTextSubject3" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Subject 3 Marks" android:inputType="number"/>
+
+<Button android:id="@+id/buttonSave"
+android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Save Marks"/>
+
+<Button android:id="@+id/buttonDisplayMenu" android:layout_width="match_parent"
+
+android:layout_height="wrap_content" android:text="Go to Display Marks"/>
+
+</LinearLayout>
+</ScrollView>
+
+
+activity_display_marks.xml
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent"
+android:padding="16dp">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+<EditText android:id="@+id/editTextSearchRollNumber" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Enter Roll Number to Search" android:inputType="text"/>
+
+<Button android:id="@+id/buttonSearch" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Search"/>
+
+<Button android:id="@+id/buttonDisplayAll" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Display All Students"/>
+
+<TextView android:id="@+id/textViewResults" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"
+
+android:textSize="16sp" android:padding="8dp" android:background="#F0F0F0"/>
+
+</LinearLayout>
+</ScrollView>
+
+
+menu_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+android:id="@+id/menu_store_marks" android:title="Store Marks" app:showAsAction="never"/>
+<item
+android:id="@+id/menu_display_marks" android:title="Display Marks" app:showAsAction="never"/>
+</menu>
+
+
+MainActivity.kt
+package com.example.application25 import android.content.Intent import android.os.Bundle
+import android.view.Menu import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity import androidx.appcompat.widget.Toolbar
+
+class MainActivity : AppCompatActivity() {
+override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState)
+setContentView(R.layout.activity_main)
+
+val toolbar: Toolbar = findViewById(R.id.toolbar) setSupportActionBar(toolbar)
+supportActionBar?.title = "Student Marks Management"
+}
+
+
+// Create options menu
+override fun onCreateOptionsMenu(menu: Menu?): Boolean { menuInflater.inflate(R.menu.main_menu, menu)
+return true
+}
+
+
+// Handle menu item selections
+override fun onOptionsItemSelected(item: MenuItem): Boolean { return when (item.itemId) {
+R.id.menu_store_marks -> {
+val intent = Intent(this, StoreMarksActivity::class.java) startActivity(intent)
+true
+}
+R.id.menu_display_marks -> {
+val intent = Intent(this, DisplayMarksActivity::class.java) startActivity(intent)
+true
+}
+else -> super.onOptionsItemSelected(item)
+}
+}
+}
+
+StoreMarksActivity.kt
+package com.example.application25
+import android.content.Intent import android.os.Bundle import android.widget.Button import android.widget.EditText import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class StoreMarksActivity : AppCompatActivity() { private lateinit var editTextRollNumber: EditText private lateinit var editTextName: EditText private lateinit var editTextSubject1: EditText private lateinit var editTextSubject2: EditText private lateinit var editTextSubject3: EditText private lateinit var buttonSave: Button
+private lateinit var buttonDisplayMenu: Button private lateinit var databaseHelper: DatabaseHelper
+override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState) setContentView(R.layout.activity_store_marks)
+// Initialize views
+editTextRollNumber = findViewById(R.id.editTextRollNumber) editTextName = findViewById(R.id.editTextName) editTextSubject1 = findViewById(R.id.editTextSubject1) editTextSubject2 = findViewById(R.id.editTextSubject2) editTextSubject3 = findViewById(R.id.editTextSubject3) buttonSave = findViewById(R.id.buttonSave) buttonDisplayMenu = findViewById(R.id.buttonDisplayMenu)
+
+// Initialize database helper databaseHelper = DatabaseHelper(this)
+
+// Save button click listener buttonSave.setOnClickListener {
+saveStudentMarks()
+}
+
+// Display Menu button click listener
+
+buttonDisplayMenu.setOnClickListener {
+val intent = Intent(this, DisplayMarksActivity::class.java) startActivity(intent)
+}
+}
+private fun saveStudentMarks() {
+val rollNumber = editTextRollNumber.text.toString() val name = editTextName.text.toString()
+val subject1 = editTextSubject1.text.toString().toIntOrNull() val subject2 = editTextSubject2.text.toString().toIntOrNull() val subject3 = editTextSubject3.text.toString().toIntOrNull()
+// Validate inputs
+if (rollNumber.isEmpty() || name.isEmpty() ||
+subject1 == null || subject2 == null || subject3 == null) { Toast.makeText(this, "Please enter all details",
+Toast.LENGTH_SHORT).show() return
+}
+
+// Calculate total marks and percentage
+val totalMarks = subject1 + subject2 + subject3
+val percentage = (totalMarks.toDouble() / 300) * 100
+// Create Student object val student = Student(
+rollNumber = rollNumber, name = name,
+subject1 = subject1, subject2 = subject2, subject3 = subject3, totalMarks = totalMarks, percentage = percentage
+)
+// Save to database databaseHelper.addStudent(student)
+// Clear input fields editTextRollNumber.text.clear() editTextName.text.clear() editTextSubject1.text.clear()
+
+editTextSubject2.text.clear() editTextSubject3.text.clear()
+
+// Show success message
+    Toast.makeText(this, "Student marks saved successfully", Toast.LENGTH_SHORT).show()
+}
+}
+
+
+DisplayMarksActivity.kt
+package com.example.application25
+import android.os.Bundle import android.widget.Button import android.widget.EditText
+import android.widget.TextView import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+class DisplayMarksActivity : AppCompatActivity() { private lateinit var editTextSearchRollNumber: EditText private lateinit var buttonSearch: Button
+private lateinit var buttonDisplayAll: Button private lateinit var textViewResults: TextView
+private lateinit var databaseHelper: DatabaseHelper override fun onCreate(savedInstanceState: Bundle?) {
+super.onCreate(savedInstanceState)
+setContentView(R.layout.activity_display_marks)
+
+// Initialize views editTextSearchRollNumber =
+findViewById(R.id.editTextSearchRollNumber) buttonSearch = findViewById(R.id.buttonSearch)
+buttonDisplayAll = findViewById(R.id.buttonDisplayAll) textViewResults = findViewById(R.id.textViewResults)
+// Initialize database helper databaseHelper = DatabaseHelper(this)
+
+// Search button click listener
+
+buttonSearch.setOnClickListener { searchStudentByRollNumber()
+}
+// Display All button click listener buttonDisplayAll.setOnClickListener {
+displayAllStudents()
+}
+}
+private fun searchStudentByRollNumber() {
+val rollNumber = editTextSearchRollNumber.text.toString()
+if (rollNumber.isEmpty()) {
+      Toast.makeText(this, "Please enter Roll Number", Toast.LENGTH_SHORT).show()
+return
+}
+val student = databaseHelper.getStudentByRollNumber(rollNumber) if (student != null) {
+val resultText = """
+Roll Number: ${student.rollNumber} Name: ${student.name}
+Subject 1 Marks: ${student.subject1} Subject 2 Marks: ${student.subject2} Subject 3 Marks: ${student.subject3} Total Marks: ${student.totalMarks}
+  Percentage: ${String.format("%.2f", student.percentage)}% """.trimIndent()
+textViewResults.text = resultText
+} else {
+textViewResults.text = "No student found with this Roll Number"
+}
+}
+private fun displayAllStudents() {
+val students = databaseHelper.getAllStudents()
+
+if (students.isEmpty()) {
+textViewResults.text = "No students found in database"
+
+return
+}
+
+val resultText = StringBuilder() resultText.append("All Students:\n\n")
+students.forEach { student -> resultText.append("""
+Roll Number: ${student.rollNumber} Name: ${student.name}
+Total Marks: ${student.totalMarks}
+Percentage: ${String.format("%.2f", student.percentage)}%
+
+""".trimIndent())
+}
+
+textViewResults.text = resultText.toString()
+}
+}
+
+
+Student.kt
+package com.example.application25
+data class Student(
+val rollNumber: String, val name: String,
+val subject1: Int, val subject2: Int, val subject3: Int, val totalMarks: Int,
+val percentage: Double
+)
+
+
+DatabaseHelper.kt
+package com.example.application25 import android.content.ContentValues import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+
+import android.database.sqlite.SQLiteOpenHelper
+
+
+class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+companion object {
+private const val DATABASE_NAME = "StudentMarksDB" private const val DATABASE_VERSION = 1
+private const val TABLE_STUDENTS = "students"
+
+
+// Columns
+private const val KEY_ROLL_NUMBER = "roll_number" private const val KEY_NAME = "name"
+private const val KEY_SUBJECT1 = "subject1" private const val KEY_SUBJECT2 = "subject2" private const val KEY_SUBJECT3 = "subject3"
+private const val KEY_TOTAL_MARKS = "total_marks" private const val KEY_PERCENTAGE = "percentage"
+}
+override fun onCreate(db: SQLiteDatabase) {
+val createTable = """CREATE TABLE $TABLE_STUDENTS(
+$KEY_ROLL_NUMBER TEXT PRIMARY KEY,
+$KEY_NAME TEXT,
+$KEY_SUBJECT1 INTEGER,
+$KEY_SUBJECT2 INTEGER,
+$KEY_SUBJECT3 INTEGER,
+$KEY_TOTAL_MARKS INTEGER,
+$KEY_PERCENTAGE REAL
+)"""
+
+db.execSQL(createTable)
+}
+  override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+db.execSQL("DROP TABLE IF EXISTS $TABLE_STUDENTS")
+onCreate(db)
+}
+
+
+fun addStudent(student: Student) { val db = this.writableDatabase
+val values = ContentValues().apply { put(KEY_ROLL_NUMBER, student.rollNumber) put(KEY_NAME, student.name) put(KEY_SUBJECT1, student.subject1) put(KEY_SUBJECT2, student.subject2) put(KEY_SUBJECT3, student.subject3) put(KEY_TOTAL_MARKS, student.totalMarks) put(KEY_PERCENTAGE, student.percentage)
+}
+db.insert(TABLE_STUDENTS, null, values) db.close()
+}
+
+
+fun getAllStudents(): List<Student> {
+val studentList = mutableListOf<Student>()
+val selectQuery = "SELECT * FROM $TABLE_STUDENTS"
+
+
+val db = this.readableDatabase
+
+val cursor = db.rawQuery(selectQuery, null)
+
+
+cursor.use {
+val rollNumberIndex = it.getColumnIndex(KEY_ROLL_NUMBER) val nameIndex = it.getColumnIndex(KEY_NAME)
+val subject1Index = it.getColumnIndex(KEY_SUBJECT1) val subject2Index = it.getColumnIndex(KEY_SUBJECT2) val subject3Index = it.getColumnIndex(KEY_SUBJECT3)
+val totalMarksIndex = it.getColumnIndex(KEY_TOTAL_MARKS) val percentageIndex = it.getColumnIndex(KEY_PERCENTAGE)
+
+while (it.moveToNext()) { val student = Student(
+rollNumber = it.getString(rollNumberIndex), name = it.getString(nameIndex),
+subject1 = it.getInt(subject1Index), subject2 = it.getInt(subject2Index), subject3 = it.getInt(subject3Index), totalMarks = it.getInt(totalMarksIndex), percentage = it.getDouble(percentageIndex)
+)
+studentList.add(student)
+}
+}
+
+
+db.close()
+return studentList
+}
+
+fun getStudentByRollNumber(rollNumber: String): Student? { val db = this.readableDatabase
+val cursor = db.query( TABLE_STUDENTS,
+null,
+"$KEY_ROLL_NUMBER = ?",
+arrayOf(rollNumber), null,
+null, null
+)
+
+
+return cursor.use {
+if (it.moveToFirst()) {
+val rollNumberIndex = it.getColumnIndex(KEY_ROLL_NUMBER) val nameIndex = it.getColumnIndex(KEY_NAME)
+val subject1Index = it.getColumnIndex(KEY_SUBJECT1) val subject2Index = it.getColumnIndex(KEY_SUBJECT2) val subject3Index = it.getColumnIndex(KEY_SUBJECT3)
+val totalMarksIndex = it.getColumnIndex(KEY_TOTAL_MARKS) val percentageIndex = it.getColumnIndex(KEY_PERCENTAGE)
+
+Student(
+rollNumber = it.getString(rollNumberIndex), name = it.getString(nameIndex),
+subject1 = it.getInt(subject1Index), subject2 = it.getInt(subject2Index), subject3 = it.getInt(subject3Index),
+
+totalMarks = it.getInt(totalMarksIndex), percentage = it.getDouble(percentageIndex)
+)
+
+
+
+
+}
+}
+
+
+
+
+} else null
+}
+
+
+
